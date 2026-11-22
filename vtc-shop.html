@@ -2,73 +2,155 @@
 <html lang="id">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>VTC SHOP INDONESIA</title>
 <style>
-*{margin:0;padding:0;box-sizing:border-box;font-family:Arial,sans-serif}
-body{background:#111;color:#fff}
-.top{background:#ff4d00;padding:12px;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;z-index:10}
-.top b{font-size:20px}.top b span{color:#ffcc00}
-.btn{background:#ff4d00;color:#fff;border:0;padding:10px 14px;border-radius:20px;font-weight:bold;cursor:pointer}
-.card{background:#1a1a1a;margin:12px;border-radius:16px;padding:16px}
-.hero h1{font-size:32px;line-height:1.1}
-.hero p{color:#ccc;margin:10px 0;font-size:14px}
-.pill{display:inline-block;background:#0a3d2e;color:#7dffb0;padding:6px 10px;border-radius:20px;margin:4px 4px 0 0;font-size:13px}
-.search{display:flex;gap:8px;margin:12px}
-.search input{flex:1;padding:12px;border-radius:20px;border:0}
-.grid{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;text-align:center;font-size:12px;margin:12px 0}
-.grid div{background:#222;padding:10px;border-radius:12px}
-.products{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
-.p{background:#222;border-radius:12px;overflow:hidden;padding-bottom:10px}
-.p img{width:100%;height:140px;object-fit:cover}
-.p h4{font-size:13px;padding:8px;height:36px;overflow:hidden}
-.p .harga{color:#ff4d00;font-weight:bold;padding:0 8px}
-.p .coret{color:#888;font-size:11px;text-decoration:line-through;padding:0 8px}
-.p button{width:90%;margin:8px 5%;background:#ff4d00;color:#fff;border:0;padding:8px;border-radius:20px}
-.bottom{position:fixed;bottom:0;left:0;right:0;background:#000;display:flex;justify-content:space-around;padding:10px 0}
-.bottom a{color:#fff;text-decoration:none;font-size:12px;text-align:center}
-input,select{width:100%;padding:10px;margin:6px 0;border-radius:10px;border:0}
+*{margin:0;padding:0;box-sizing:border-box;font-family:system-ui,Arial}
+body{background:#f5f5f5}
+/* SPLASH */
+#splash{position:fixed;inset:0;background:#ff6a00;z-index:999;display:flex;flex-direction:column;align-items:center;justify-content:center;color:white}
+#splash .logo{width:110px;height:110px;background:white;border-radius:28px;display:flex;align-items:center;justify-content:center;font-size:70px;font-weight:900;color:#ff6a00}
+#splash h1{font-size:32px;margin-top:16px;letter-spacing:1px}
+#splash p{margin-top:6px;opacity:.9}
+.loader{width:180px;height:5px;background:rgba(255,255,255,.3);border-radius:99px;margin-top:24px;overflow:hidden}
+.loader div{height:100%;width:50%;background:white;border-radius:99px;animation:load 1.2s infinite}
+@keyframes load{0%{transform:translateX(-100%)}100%{transform:translateX(300%)}}
+/* AUTH */
+#auth{display:none;min-height:100vh;background:white;padding:28px 22px}
+#auth.show{display:block}
+#auth .top{width:68px;height:68px;background:#ff6a00;border-radius:18px;display:flex;align-items:center;justify-content:center;color:white;font-size:38px;font-weight:900;margin:10px auto}
+#auth h2{text-align:center;font-size:26px;margin-top:14px}
+#auth .sub{text-align:center;color:#777;margin-top:6px;font-size:14px}
+.tabs{display:flex;background:#eee;border-radius:99px;padding:4px;margin:22px 0}
+.tabs button{flex:1;border:0;padding:11px;border-radius:99px;font-weight:700;cursor:pointer;background:transparent}
+.tabs button.on{background:#ff6a00;color:white}
+label{font-size:13px;font-weight:600;color:#333;display:block;margin:14px 0 6px}
+input,select{width:100%;padding:13px;border:1px solid #ddd;border-radius:12px;font-size:15px;outline:none}
+input:focus{border-color:#ff6a00}
+.btn{width:100%;background:#ff6a00;color:white;border:0;padding:14px;border-radius:12px;font-weight:800;font-size:16px;margin-top:20px;cursor:pointer}
+.btn2{width:100%;background:white;color:#333;border:1px solid #ddd;padding:13px;border-radius:12px;font-weight:700;margin-top:10px;cursor:pointer}
+.note{text-align:center;font-size:12px;color:#999;margin-top:16px;line-height:1.6}
+#authMsg{text-align:center;color:red;font-size:13px;margin-top:10px;min-height:18px}
+/* SHOP */
+#shop{display:none}
+#shop.show{display:block}
+.header{background:#ff6a00;color:white;padding:14px 16px;position:sticky;top:0;z-index:10}
+.header .row{display:flex;justify-content:space-between;align-items:center}
+.header b{font-size:20px}
+.header small{display:block;font-size:11px;opacity:.9}
+.avatar{width:36px;height:36px;background:white;color:#ff6a00;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:900}
+.search{margin:12px 0 0;background:white;border-radius:99px;padding:11px 14px;color:#888;font-size:14px}
+.menu{display:flex;gap:10px;overflow:auto;padding:12px 14px}
+.menu div{min-width:68px;background:white;border-radius:14px;padding:10px 6px;text-align:center;font-size:12px;box-shadow:0 1px 4px rgba(0,0,0,.06)}
+.card{background:white;margin:0 14px 14px;border-radius:16px;padding:14px;box-shadow:0 1px 5px rgba(0,0,0,.05)}
+.card h3{font-size:16px}
+.card p{font-size:13px;color:#666;margin:6px 0}
+.price{color:#ff6a00;font-weight:800;font-size:16px}
+.logout{background:#111;color:white;border:0;padding:10px 14px;border-radius:99px;font-size:12px;font-weight:700}
 </style>
 </head>
 <body>
-<div class="top"><b>VTC SHOP <span>INDONESIA</span></b><button class="btn" onclick="alert('Keranjang: '+keranjang.length+' produk')">🛒 Keranjang <span id="cartN">0</span></button></div>
 
-<div class="card hero">
-<p style="color:#ffcc00;font-weight:bold">Aplikasi Super #1 Indonesia • Diskon s/d 80% Hari Ini</p>
-<h1>Belanja Cerdas<br>Hemat Tepat</h1>
-<p>COD GARANSI uang ditahan dulu di Escrow VTC SHOP INDONESIA baru dibayar ke Seller • Gratis Ongkir XTRA • Garansi Tepat Waktu (telat dapat voucher Rp 20rb).</p>
-<span class="pill">🚚 Gratis Ongkir XTRA</span><span class="pill">🛡️ COD Garansi Escrow</span><span class="pill">⏰ Garansi Tepat Waktu</span><span class="pill">✅ VTC MALL 100% Original</span>
+<div id="splash">
+  <div class="logo">V</div>
+  <h1>VTC SHOP</h1>
+  <p>INDONESIA • Belanja Cerdas Hemat Tepat</p>
+  <div class="loader"><div></div></div>
+  <p style="margin-top:14px;font-size:13px">Memuat...</p>
 </div>
 
-<div class="search"><input id="cari" placeholder="Ketik nama produk..." oninput="render()"><button class="btn" onclick="render()">Cari Produk</button></div>
-
-<div class="grid"><div>🏬<br>VTC MALL</div><div>📺<br>VTC TV</div><div>📡<br>VTC LIVE</div><div>🎥<br>VTC VIDEO</div><div>🎮<br>Top Up Game</div><div>🍔<br>VTC Food</div><div>🛒<br>VTC Mart</div><div>📱<br>Pulsa & Tagihan</div><div>🎟️<br>Voucher</div><div>🪙<br>VTC Coins</div></div>
-
-<div class="card"><b>🔥 FLASH SALE 80%</b><div id="list" class="products" style="margin-top:12px"></div></div>
-
-<div class="card">
-<h3>➕ Jualan - Tambah Produk (Langsung Masuk Firebase)</h3>
-<input id="namaToko" placeholder="Nama Toko"><input id="namaProduk" placeholder="Nama Produk"><input id="harga" type="number" placeholder="Harga, contoh 79000"><input id="foto" placeholder="Link Foto (opsional, boleh kosong)"><button class="btn" style="width:100%" onclick="tambah()">Upload Produk</button><p id="status" style="font-size:13px;color:#7dffb0;margin-top:8px"></p>
+<div id="auth">
+  <div class="top">V</div>
+  <h2 id="authTitle">Selamat Datang</h2>
+  <p class="sub" id="authSub">Masuk ke akun VTC SHOP kamu</p>
+  <div class="tabs">
+    <button id="tabLogin" class="on" onclick="switchTab('login')">Masuk</button>
+    <button id="tabDaftar" onclick="switchTab('daftar')">Daftar</button>
+  </div>
+  <div id="formDaftar" style="display:none">
+    <label>Nama Lengkap</label><input id="regNama" placeholder="Contoh: Budi Santoso">
+    <label>Peran</label><select id="regPeran"><option value="Pembeli">Pembeli</option><option value="Seller">Seller / Jualan</option></select>
+  </div>
+  <label>Nomor Telepon / Email</label><input id="loginUser" placeholder="08xxxx / email@gmail.com">
+  <label>Kata Sandi</label><input id="loginPass" type="password" placeholder="Minimal 6 karakter">
+  <div id="formDaftar2" style="display:none">
+    <label>Ulangi Kata Sandi</label><input id="regPass2" type="password" placeholder="Ulangi kata sandi">
+  </div>
+  <div id="authMsg"></div>
+  <button class="btn" id="authBtn" onclick="doAuth()">Masuk</button>
+  <button class="btn2" onclick="guest()">Lanjut Sebagai Tamu ➜</button>
+  <p class="note">Dengan masuk, kamu setuju dengan Syarat & Ketentuan VTC SHOP.<br>COD • Garansi Escrow • Gratis Ongkir XTRA</p>
 </div>
-<div style="height:70px"></div>
-<div class="bottom"><a href="#">🏠<br>Beranda</a><a href="#">📺<br>VTC TV</a><a href="#">▦<br>SEMUA ADA</a><a href="#">➕<br>Jualan</a><a href="#">🛒<br>Keranjang</a><a href="#">👤<br>Akun Saya</a></div>
 
-<script type="module">
-import {initializeApp} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
-import {getFirestore,collection,addDoc,onSnapshot,query,orderBy} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
-const firebaseConfig={apiKey:"AIzaSyAxYlnHbtGtEbmOZB2GLp_1I-qrBeN7x4g",authDomain:"vtc-mega-shop-resmi.firebaseapp.com",projectId:"vtc-mega-shop-resmi",storageBucket:"vtc-mega-shop-resmi.firebasestorage.app",messagingSenderId:"959376548779",appId:"1:959376548779:web:45ceae80758eefab2a68ee",measurementId:"G-TDCL3505F2"};
-const app=initializeApp(firebaseConfig);const db=getFirestore(app);
-let semua=[
-{nama:"SoundBuds Pro TWS Wireless ANC Bluetooth",harga:199000,coret:995000,toko:"Berkah Cell",foto:"https://images.unsplash.com/photo-1590658268037-6bf12165a8df?w=400"},
-{nama:"Tumbler Vakum Stainless SUS 304 Anti Bocor",harga:79000,coret:395000,toko:"Dapur Modern",foto:"https://images.unsplash.com/photo-1602143407151-7111542de6e8?w=400"},
-{nama:"Tas Ransel Kerja Minimalis Anti Air Laptop 15.6",harga:139000,coret:695000,toko:"VTC Official",foto:"https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=400"}
-];
-window.keranjang=[];
-window.render=()=>{const q=document.getElementById('cari').value.toLowerCase();const f=semua.filter(p=>p.nama.toLowerCase().includes(q));document.getElementById('list').innerHTML=f.map((p,i)=>`<div class="p"><img src="${p.foto}"><h4>${p.nama}</h4><div class="harga">Rp ${p.harga.toLocaleString('id-ID')}</div><div class="coret">Rp ${p.coret.toLocaleString('id-ID')}</div><div style="font-size:11px;padding:0 8px">🏪 ${p.toko} • Diskon 80%</div><button onclick="beli(${i})">+ Keranjang</button></div>`).join('')||'<p>Belum ada produk</p>'};
-window.beli=(i)=>{keranjang.push(semua[i]);document.getElementById('cartN').innerText=keranjang.length;alert('Masuk keranjang: '+semua[i].nama)};
-window.tambah=async()=>{const nama=document.getElementById('namaProduk').value,toko=document.getElementById('namaToko').value||'Toko Baru',harga=Number(document.getElementById('harga').value),foto=document.getElementById('foto').value||'https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=400';if(!nama||!harga)return alert('Isi nama produk & harga dulu');document.getElementById('status').innerText='Mengupload...';try{await addDoc(collection(db,'products'),{nama,toko,harga,coret:harga*5,foto,createdAt:Date.now()});document.getElementById('status').innerText='✅ Berhasil! Produk langsung muncul di semua HP.'}catch(e){document.getElementById('status').innerText='Gagal Firebase: '+e.message+' - produk tetap muncul di HP ini.';semua.unshift({nama,toko,harga,coret:harga*5,foto});render()}};
-onSnapshot(query(collection(db,'products'),orderBy('createdAt','desc')),(s)=>{const dariFB=s.docs.map(d=>d.data());if(dariFB.length>0){semua=[...dariFB,...semua.filter(p=>!dariFB.find(x=>x.nama===p.nama))];render()}});
-render();
+<div id="shop">
+  <div class="header">
+    <div class="row"><div><b>VTC SHOP</b><small>INDONESIA • <span id="userLabel">Tamu</span></small></div><div style="display:flex;gap:8px;align-items:center"><div class="avatar" id="avatar">V</div><button class="logout" onclick="logout()">Keluar</button></div></div>
+    <div class="search">🔍 Cari Produk, Toko, Flash Sale...</div>
+  </div>
+  <div class="menu"><div>🔥<br>Flash Sale</div><div>🏬<br>VTC MALL</div><div>📺<br>VTC TV</div><div>📱<br>VTC LIVE</div><div>🎁<br>Voucher</div><div>🚚<br>Gratis Ongkir</div></div>
+  <div class="card"><h3>🛍️ Jualan - Tambah Produk</h3><p id="sellerInfo">Login sebagai Seller untuk jualan.</p><label>Nama Produk</label><input id="pNama" placeholder="Contoh: Baju Keren"><label>Harga (Rp)</label><input id="pHarga" type="number" placeholder="10000"><button class="btn" style="margin-top:12px" onclick="tambahProduk()">+ Upload Produk</button></div>
+  <div id="listProduk"></div>
+  <p style="text-align:center;color:#999;font-size:12px;padding:10px 20px">VTC SHOP INDONESIA • Versi 2 • Login & Daftar Aktif</p>
+</div>
+
+<script>
+let mode='login';
+function switchTab(m){mode=m;document.getElementById('tabLogin').classList.toggle('on',m=='login');document.getElementById('tabDaftar').classList.toggle('on',m=='daftar');document.getElementById('formDaftar').style.display=m=='daftar'?'block':'none';document.getElementById('formDaftar2').style.display=m=='daftar'?'block':'none';document.getElementById('authTitle').innerText=m=='login'?'Selamat Datang':'Buat Akun Baru';document.getElementById('authSub').innerText=m=='login'?'Masuk ke akun VTC SHOP kamu':'Daftar gratis, jualan langsung';document.getElementById('authBtn').innerText=m=='login'?'Masuk':'Daftar Gratis';document.getElementById('authMsg').innerText='';}
+function getUsers(){try{return JSON.parse(localStorage.getItem('vtc_users')||'[]')}catch(e){return[]}}
+function saveUsers(u){localStorage.setItem('vtc_users',JSON.stringify(u))}
+function doAuth(){
+  let user=document.getElementById('loginUser').value.trim();
+  let pass=document.getElementById('loginPass').value;
+  let msg=document.getElementById('authMsg');
+  if(!user||pass.length<6){msg.innerText='Isi No HP/Email & Kata Sandi minimal 6 karakter';return}
+  let users=getUsers();
+  if(mode=='daftar'){
+    let nama=document.getElementById('regNama').value.trim();
+    let peran=document.getElementById('regPeran').value;
+    let p2=document.getElementById('regPass2').value;
+    if(!nama){msg.innerText='Isi Nama Lengkap dulu';return}
+    if(pass!==p2){msg.innerText='Kata sandi tidak sama';return}
+    if(users.find(u=>u.user==user)){msg.innerText='Akun ini sudah terdaftar, silahkan Masuk';return}
+    let baru={nama,user,pass,peran};users.push(baru);saveUsers(users);loginSuccess(baru);
+  } else {
+    let found=users.find(u=>u.user==user&&u.pass==pass);
+    if(!found){msg.innerText='Akun tidak ditemukan / Kata Sandi salah. Coba Daftar dulu.';return}
+    loginSuccess(found);
+  }
+}
+function loginSuccess(u){localStorage.setItem('vtc_session',JSON.stringify(u));showShop(u)}
+function guest(){showShop({nama:'Tamu',user:'Tamu',peran:'Pembeli'})}
+function showShop(u){
+  document.getElementById('auth').classList.remove('show');
+  document.getElementById('shop').classList.add('show');
+  document.getElementById('userLabel').innerText=u.nama+' • '+u.peran;
+  document.getElementById('avatar').innerText=u.nama.charAt(0).toUpperCase();
+  document.getElementById('sellerInfo').innerText=u.peran=='Seller'?'Kamu login sebagai Seller: '+u.nama+' - Bisa upload produk':'Kamu login sebagai '+u.nama+' ('+u.peran+'). Daftar jadi Seller untuk jualan.';
+  renderProduk();
+}
+function logout(){localStorage.removeItem('vtc_session');document.getElementById('shop').classList.remove('show');document.getElementById('auth').classList.add('show')}
+function getProduk(){try{return JSON.parse(localStorage.getItem('vtc_produk')||'[]')}catch(e){return[]}}
+function tambahProduk(){
+  let nama=document.getElementById('pNama').value.trim();
+  let harga=document.getElementById('pHarga').value;
+  let sess=JSON.parse(localStorage.getItem('vtc_session')||'{"nama":"Tamu"}');
+  if(!nama||!harga){alert('Isi Nama & Harga dulu');return}
+  let list=getProduk();list.unshift({nama,harga,toko:sess.nama,created:Date.now()});localStorage.setItem('vtc_produk',JSON.stringify(list));
+  document.getElementById('pNama').value='';document.getElementById('pHarga').value='';renderProduk();alert('Produk berhasil ditambah!');
+}
+function renderProduk(){
+  let list=getProduk();
+  let html=list.length?list.map(p=>`<div class="card"><h3>${p.nama}</h3><p>Toko: ${p.toko} • COD • Garansi Escrow</p><div class="price">Rp ${Number(p.harga).toLocaleString('id-ID')}</div><button class="btn" style="padding:10px;margin-top:10px" onclick="alert('Ditambah ke keranjang: ${p.nama}')">+ Keranjang</button></div>`).join(''):'<div class="card"><p>Belum ada produk. Jadi yang pertama jualan!</p></div>';
+  if(!list.length) html=`<div class="card"><h3>🔥 Flash Sale Hari Ini</h3><p>Contoh Produk - Toko VTC Official</p><div class="price">Rp 49.000 <s style="color:#999;font-size:13px">Rp 99.000</s></div></div>`+html;
+  document.getElementById('listProduk').innerHTML=html;
+}
+window.onload=()=>{
+  setTimeout(()=>{
+    document.getElementById('splash').style.display='none';
+    let sess=localStorage.getItem('vtc_session');
+    if(sess){showShop(JSON.parse(sess))} else {document.getElementById('auth').classList.add('show')}
+  },1800);
+}
 </script>
 </body>
 </html>
