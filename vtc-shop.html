@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>VTC SHOP INDONESIA</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:Arial,sans-serif}
+body{background:#111;color:#fff}
+.top{background:#ff4d00;padding:12px;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;z-index:10}
+.top b{font-size:20px}.top b span{color:#ffcc00}
+.btn{background:#ff4d00;color:#fff;border:0;padding:10px 14px;border-radius:20px;font-weight:bold;cursor:pointer}
+.card{background:#1a1a1a;margin:12px;border-radius:16px;padding:16px}
+.hero h1{font-size:32px;line-height:1.1}
+.hero p{color:#ccc;margin:10px 0;font-size:14px}
+.pill{display:inline-block;background:#0a3d2e;color:#7dffb0;padding:6px 10px;border-radius:20px;margin:4px 4px 0 0;font-size:13px}
+.search{display:flex;gap:8px;margin:12px}
+.search input{flex:1;padding:12px;border-radius:20px;border:0}
+.grid{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;text-align:center;font-size:12px;margin:12px 0}
+.grid div{background:#222;padding:10px;border-radius:12px}
+.products{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.p{background:#222;border-radius:12px;overflow:hidden;padding-bottom:10px}
+.p img{width:100%;height:140px;object-fit:cover}
+.p h4{font-size:13px;padding:8px;height:36px;overflow:hidden}
+.p .harga{color:#ff4d00;font-weight:bold;padding:0 8px}
+.p .coret{color:#888;font-size:11px;text-decoration:line-through;padding:0 8px}
+.p button{width:90%;margin:8px 5%;background:#ff4d00;color:#fff;border:0;padding:8px;border-radius:20px}
+.bottom{position:fixed;bottom:0;left:0;right:0;background:#000;display:flex;justify-content:space-around;padding:10px 0}
+.bottom a{color:#fff;text-decoration:none;font-size:12px;text-align:center}
+input,select{width:100%;padding:10px;margin:6px 0;border-radius:10px;border:0}
+</style>
+</head>
+<body>
+<div class="top"><b>VTC SHOP <span>INDONESIA</span></b><button class="btn" onclick="alert('Keranjang: '+keranjang.length+' produk')">🛒 Keranjang <span id="cartN">0</span></button></div>
+
+<div class="card hero">
+<p style="color:#ffcc00;font-weight:bold">Aplikasi Super #1 Indonesia • Diskon s/d 80% Hari Ini</p>
+<h1>Belanja Cerdas<br>Hemat Tepat</h1>
+<p>COD GARANSI uang ditahan dulu di Escrow VTC SHOP INDONESIA baru dibayar ke Seller • Gratis Ongkir XTRA • Garansi Tepat Waktu (telat dapat voucher Rp 20rb).</p>
+<span class="pill">🚚 Gratis Ongkir XTRA</span><span class="pill">🛡️ COD Garansi Escrow</span><span class="pill">⏰ Garansi Tepat Waktu</span><span class="pill">✅ VTC MALL 100% Original</span>
+</div>
+
+<div class="search"><input id="cari" placeholder="Ketik nama produk..." oninput="render()"><button class="btn" onclick="render()">Cari Produk</button></div>
+
+<div class="grid"><div>🏬<br>VTC MALL</div><div>📺<br>VTC TV</div><div>📡<br>VTC LIVE</div><div>🎥<br>VTC VIDEO</div><div>🎮<br>Top Up Game</div><div>🍔<br>VTC Food</div><div>🛒<br>VTC Mart</div><div>📱<br>Pulsa & Tagihan</div><div>🎟️<br>Voucher</div><div>🪙<br>VTC Coins</div></div>
+
+<div class="card"><b>🔥 FLASH SALE 80%</b><div id="list" class="products" style="margin-top:12px"></div></div>
+
+<div class="card">
+<h3>➕ Jualan - Tambah Produk (Langsung Masuk Firebase)</h3>
+<input id="namaToko" placeholder="Nama Toko"><input id="namaProduk" placeholder="Nama Produk"><input id="harga" type="number" placeholder="Harga, contoh 79000"><input id="foto" placeholder="Link Foto (opsional, boleh kosong)"><button class="btn" style="width:100%" onclick="tambah()">Upload Produk</button><p id="status" style="font-size:13px;color:#7dffb0;margin-top:8px"></p>
+</div>
+<div style="height:70px"></div>
+<div class="bottom"><a href="#">🏠<br>Beranda</a><a href="#">📺<br>VTC TV</a><a href="#">▦<br>SEMUA ADA</a><a href="#">➕<br>Jualan</a><a href="#">🛒<br>Keranjang</a><a href="#">👤<br>Akun Saya</a></div>
+
+<script type="module">
+import {initializeApp} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+import {getFirestore,collection,addDoc,onSnapshot,query,orderBy} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+const firebaseConfig={apiKey:"AIzaSyAxYlnHbtGtEbmOZB2GLp_1I-qrBeN7x4g",authDomain:"vtc-mega-shop-resmi.firebaseapp.com",projectId:"vtc-mega-shop-resmi",storageBucket:"vtc-mega-shop-resmi.firebasestorage.app",messagingSenderId:"959376548779",appId:"1:959376548779:web:45ceae80758eefab2a68ee",measurementId:"G-TDCL3505F2"};
+const app=initializeApp(firebaseConfig);const db=getFirestore(app);
+let semua=[
+{nama:"SoundBuds Pro TWS Wireless ANC Bluetooth",harga:199000,coret:995000,toko:"Berkah Cell",foto:"https://images.unsplash.com/photo-1590658268037-6bf12165a8df?w=400"},
+{nama:"Tumbler Vakum Stainless SUS 304 Anti Bocor",harga:79000,coret:395000,toko:"Dapur Modern",foto:"https://images.unsplash.com/photo-1602143407151-7111542de6e8?w=400"},
+{nama:"Tas Ransel Kerja Minimalis Anti Air Laptop 15.6",harga:139000,coret:695000,toko:"VTC Official",foto:"https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=400"}
+];
+window.keranjang=[];
+window.render=()=>{const q=document.getElementById('cari').value.toLowerCase();const f=semua.filter(p=>p.nama.toLowerCase().includes(q));document.getElementById('list').innerHTML=f.map((p,i)=>`<div class="p"><img src="${p.foto}"><h4>${p.nama}</h4><div class="harga">Rp ${p.harga.toLocaleString('id-ID')}</div><div class="coret">Rp ${p.coret.toLocaleString('id-ID')}</div><div style="font-size:11px;padding:0 8px">🏪 ${p.toko} • Diskon 80%</div><button onclick="beli(${i})">+ Keranjang</button></div>`).join('')||'<p>Belum ada produk</p>'};
+window.beli=(i)=>{keranjang.push(semua[i]);document.getElementById('cartN').innerText=keranjang.length;alert('Masuk keranjang: '+semua[i].nama)};
+window.tambah=async()=>{const nama=document.getElementById('namaProduk').value,toko=document.getElementById('namaToko').value||'Toko Baru',harga=Number(document.getElementById('harga').value),foto=document.getElementById('foto').value||'https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=400';if(!nama||!harga)return alert('Isi nama produk & harga dulu');document.getElementById('status').innerText='Mengupload...';try{await addDoc(collection(db,'products'),{nama,toko,harga,coret:harga*5,foto,createdAt:Date.now()});document.getElementById('status').innerText='✅ Berhasil! Produk langsung muncul di semua HP.'}catch(e){document.getElementById('status').innerText='Gagal Firebase: '+e.message+' - produk tetap muncul di HP ini.';semua.unshift({nama,toko,harga,coret:harga*5,foto});render()}};
+onSnapshot(query(collection(db,'products'),orderBy('createdAt','desc')),(s)=>{const dariFB=s.docs.map(d=>d.data());if(dariFB.length>0){semua=[...dariFB,...semua.filter(p=>!dariFB.find(x=>x.nama===p.nama))];render()}});
+render();
+</script>
+</body>
+</html>
