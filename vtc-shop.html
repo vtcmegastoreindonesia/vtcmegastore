@@ -1,156 +1,80 @@
 <!DOCTYPE html>
-<html lang="id">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>VTC SHOP INDONESIA</title>
+<html lang="id"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>VTC SHOP INDONESIA - Belanja Hemat, COD Aman Bergaransi</title>
 <style>
-*{margin:0;padding:0;box-sizing:border-box;font-family:system-ui,Arial}
-body{background:#f5f5f5}
-/* SPLASH */
-#splash{position:fixed;inset:0;background:#ff6a00;z-index:999;display:flex;flex-direction:column;align-items:center;justify-content:center;color:white}
-#splash .logo{width:110px;height:110px;background:white;border-radius:28px;display:flex;align-items:center;justify-content:center;font-size:70px;font-weight:900;color:#ff6a00}
-#splash h1{font-size:32px;margin-top:16px;letter-spacing:1px}
-#splash p{margin-top:6px;opacity:.9}
-.loader{width:180px;height:5px;background:rgba(255,255,255,.3);border-radius:99px;margin-top:24px;overflow:hidden}
-.loader div{height:100%;width:50%;background:white;border-radius:99px;animation:load 1.2s infinite}
-@keyframes load{0%{transform:translateX(-100%)}100%{transform:translateX(300%)}}
-/* AUTH */
-#auth{display:none;min-height:100vh;background:white;padding:28px 22px}
-#auth.show{display:block}
-#auth .top{width:68px;height:68px;background:#ff6a00;border-radius:18px;display:flex;align-items:center;justify-content:center;color:white;font-size:38px;font-weight:900;margin:10px auto}
-#auth h2{text-align:center;font-size:26px;margin-top:14px}
-#auth .sub{text-align:center;color:#777;margin-top:6px;font-size:14px}
-.tabs{display:flex;background:#eee;border-radius:99px;padding:4px;margin:22px 0}
-.tabs button{flex:1;border:0;padding:11px;border-radius:99px;font-weight:700;cursor:pointer;background:transparent}
-.tabs button.on{background:#ff6a00;color:white}
-label{font-size:13px;font-weight:600;color:#333;display:block;margin:14px 0 6px}
-input,select{width:100%;padding:13px;border:1px solid #ddd;border-radius:12px;font-size:15px;outline:none}
-input:focus{border-color:#ff6a00}
-.btn{width:100%;background:#ff6a00;color:white;border:0;padding:14px;border-radius:12px;font-weight:800;font-size:16px;margin-top:20px;cursor:pointer}
-.btn2{width:100%;background:white;color:#333;border:1px solid #ddd;padding:13px;border-radius:12px;font-weight:700;margin-top:10px;cursor:pointer}
-.note{text-align:center;font-size:12px;color:#999;margin-top:16px;line-height:1.6}
-#authMsg{text-align:center;color:red;font-size:13px;margin-top:10px;min-height:18px}
-/* SHOP */
-#shop{display:none}
-#shop.show{display:block}
-.header{background:#ff6a00;color:white;padding:14px 16px;position:sticky;top:0;z-index:10}
-.header .row{display:flex;justify-content:space-between;align-items:center}
-.header b{font-size:20px}
-.header small{display:block;font-size:11px;opacity:.9}
-.avatar{width:36px;height:36px;background:white;color:#ff6a00;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:900}
-.search{margin:12px 0 0;background:white;border-radius:99px;padding:11px 14px;color:#888;font-size:14px}
-.menu{display:flex;gap:10px;overflow:auto;padding:12px 14px}
-.menu div{min-width:68px;background:white;border-radius:14px;padding:10px 6px;text-align:center;font-size:12px;box-shadow:0 1px 4px rgba(0,0,0,.06)}
-.card{background:white;margin:0 14px 14px;border-radius:16px;padding:14px;box-shadow:0 1px 5px rgba(0,0,0,.05)}
-.card h3{font-size:16px}
-.card p{font-size:13px;color:#666;margin:6px 0}
-.price{color:#ff6a00;font-weight:800;font-size:16px}
-.logout{background:#111;color:white;border:0;padding:10px 14px;border-radius:99px;font-size:12px;font-weight:700}
-</style>
-</head>
-<body>
+*{margin:0;padding:0;box-sizing:border-box;font-family:Arial,sans-serif}body{background:#0a0a0a;color:#fff;padding-bottom:80px}
+.top{position:sticky;top:0;background:#0a0a0a;z-index:20;padding:10px}
+.nav{display:flex;align-items:center;gap:10px;overflow:auto;white-space:nowrap}
+.logo{font-weight:900;font-size:18px}.logo span{color:#ff6a00}.logo i{background:#ff6a00;color:#fff;padding:4px 8px;border-radius:8px;font-style:normal}
+.nav a{color:#ccc;text-decoration:none;font-size:13px;font-weight:700}.nav a.on{color:#ff6a00}
+.cart{background:#ff4d00;color:#fff;border:0;padding:8px 14px;border-radius:8px;font-weight:900;white-space:nowrap}
+.search{display:flex;gap:8px;background:#1a1a1a;padding:10px;border-radius:12px;margin-top:8px}.search input{flex:1;background:transparent;border:0;outline:none;color:#fff}
+.search button{background:#ff6a00;color:#fff;border:0;padding:8px 14px;border-radius:8px;font-weight:800}
+.hero{background:linear-gradient(135deg,#ff6a00,#ff2d00,#7c3aed);border-radius:16px;padding:20px;margin:12px;text-align:center}
+.hero h1{font-size:23px;line-height:1.25}.hero p{font-size:13px;opacity:.95;margin:8px 0}
+.btnW{display:inline-block;background:#fff;color:#000;padding:12px 20px;border-radius:999px;font-weight:900;text-decoration:none}
+.btnB{display:inline-block;background:#000;color:#fff;padding:10px 16px;border-radius:999px;font-weight:800;text-decoration:none;font-size:13px;margin-top:8px}
+.pills{display:flex;gap:6px;justify-content:center;flex-wrap:wrap;margin-top:12px}.pills span{padding:6px 11px;border-radius:999px;font-size:12px;font-weight:800}
+.sec{margin:14px 12px}.sec h2{font-size:16px;margin-bottom:10px}
+.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}@media(min-width:700px){.grid{grid-template-columns:repeat(4,1fr)}}
+.card{background:#1a1a1a;border-radius:12px;overflow:hidden;padding-bottom:10px}.card img{width:100%;height:150px;object-fit:cover}
+.in{padding:8px}.tags{display:flex;gap:4px;flex-wrap:wrap}.tags span{font-size:9px;padding:2px 5px;border-radius:4px;font-weight:800}.red{background:#ff4d00;color:#fff}.yel{background:#facc15;color:#000}.grn{background:#16a34a;color:#fff}.gry{background:#333;color:#fff}
+.title{font-size:12px;line-height:1.3;height:32px;overflow:hidden;margin:6px 0}.price{color:#ff4d00;font-weight:900}.old{color:#888;font-size:11px;text-decoration:line-through}.store{font-size:11px;color:#aaa;margin-top:4px}
+.add{background:#ff4d00;color:#fff;border:0;width:calc(100% - 16px);margin:0 8px;padding:9px;border-radius:8px;font-weight:900}
+.mall{background:#fff;color:#000;border-radius:14px;padding:12px}.mall .card{background:#f8f8f8;color:#000}.mall .title{color:#000}.mall .store{color:#666}
+.live{background:#1a1a1a;border-radius:14px;padding:12px}.livebox{display:flex;gap:8px;overflow:auto}.livebox div{min-width:160px;background:#000;border-radius:10px;padding:8px;font-size:12px}.livebox img{width:100%;height:80px;object-fit:cover;border-radius:8px}
+.bottom{position:fixed;bottom:0;left:0;right:0;display:flex;gap:10px;padding:10px;background:#0a0a0a}.bottom button{flex:1;padding:13px;border-radius:10px;border:0;font-weight:900}.o{background:#ff4d00;color:#fff}.w{background:#fff;color:#000}
+</style></head><body>
+<div class="top"><div class="nav"><div class="logo"><i>V</i> VTC SHOP <span>INDONESIA</span></div><a href="#" class="on">Beranda</a><a href="#live">VTC LIVE</a><a href="#mall">VTC MALL</a><a href="#produk">SEMUA ADA</a><a href="#">Pesanan Saya</a><button class="cart" onclick="checkout()">🛒 Keranjang (<span id="c">0</span>)</button></div>
+<div class="search"><input id="q" placeholder="Cari: SoundBuds, Kopi, Sepatu, Skincare..."><button onclick="cari()">CARI</button></div></div>
 
-<div id="splash">
-  <div class="logo">V</div>
-  <h1>VTC SHOP</h1>
-  <p>INDONESIA • Belanja Cerdas Hemat Tepat</p>
-  <div class="loader"><div></div></div>
-  <p style="margin-top:14px;font-size:13px">Memuat...</p>
+<div class="hero">
+<b>🔥 BELANJA HEMAT • COD AMAN • BERGARANSI</b>
+<h1>Belanja Hemat, COD Aman Bergaransi,<br>Live TikTok / YT / IG & TV Nasional<br>dalam satu aplikasi<br>VTC SHOP INDONESIA!</h1>
+<p>✅ Gratis Ongkir XTRA • ✅ 100% Ori • ✅ Bisa Retur • ✅ Garansi Resmi</p>
+<a class="btnW" href="https://ais-dev-zdg65jlwuybmcfgfd7kvf3-719431316097.asia-northeast1.run.app/" target="_blank">🚀 BUKA APLIKASI VTC SHOP →</a><br>
+<a class="btnB" href="https://wa.me/6281234567890?text=Halo%20VTC%20SHOP%2C%20saya%20mau%20order" target="_blank">💬 ORDER VIA WA</a>
+<div class="pills"><span style="background:#000">📱 TikTok Live</span><span style="background:#FF0000">▶️ YouTube Live</span><span style="background:#E1306C">📸 IG Live</span><span style="background:#fff;color:#000">📺 TV Nasional</span></div>
 </div>
 
-<div id="auth">
-  <div class="top">V</div>
-  <h2 id="authTitle">Selamat Datang</h2>
-  <p class="sub" id="authSub">Masuk ke akun VTC SHOP kamu</p>
-  <div class="tabs">
-    <button id="tabLogin" class="on" onclick="switchTab('login')">Masuk</button>
-    <button id="tabDaftar" onclick="switchTab('daftar')">Daftar</button>
-  </div>
-  <div id="formDaftar" style="display:none">
-    <label>Nama Lengkap</label><input id="regNama" placeholder="Contoh: Budi Santoso">
-    <label>Peran</label><select id="regPeran"><option value="Pembeli">Pembeli</option><option value="Seller">Seller / Jualan</option></select>
-  </div>
-  <label>Nomor Telepon / Email</label><input id="loginUser" placeholder="08xxxx / email@gmail.com">
-  <label>Kata Sandi</label><input id="loginPass" type="password" placeholder="Minimal 6 karakter">
-  <div id="formDaftar2" style="display:none">
-    <label>Ulangi Kata Sandi</label><input id="regPass2" type="password" placeholder="Ulangi kata sandi">
-  </div>
-  <div id="authMsg"></div>
-  <button class="btn" id="authBtn" onclick="doAuth()">Masuk</button>
-  <button class="btn2" onclick="guest()">Lanjut Sebagai Tamu ➜</button>
-  <p class="note">Dengan masuk, kamu setuju dengan Syarat & Ketentuan VTC SHOP.<br>COD • Garansi Escrow • Gratis Ongkir XTRA</p>
-</div>
+<div class="sec" id="live"><div class="live"><h2>🔴 VTC LIVE &nbsp; Sedang Tayang</h2><p style="font-size:12px;color:#aaa;margin-bottom:10px">Nonton Live TikTok / YT / IG & TV Nasional, langsung checkout harga live!</p><div class="livebox">
+<div><img src="https://images.unsplash.com/photo-1572569511254-d8f925fe2cbb?w=400"><br>🔴 LIVE • 1.842 nonton<br><b>Flash Sale 80% SoundBuds Pro</b><br><span style="color:#ff4d00">Rp 199.000</span> <button style="background:#ff4d00;color:#fff;border:0;padding:4px 8px;border-radius:6px;font-weight:800" onclick="beli('SoundBuds Pro Live')">JOIN LIVE</button></div>
+<div><img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=400"><br>🔴 LIVE • 935 nonton<br><b>Review Sepatu Lari Urban Knit</b><br><span style="color:#ff4d00">Rp 349.000</span> <button style="background:#ff4d00;color:#fff;border:0;padding:4px 8px;border-radius:6px;font-weight:800" onclick="beli('Sepatu Live')">JOIN LIVE</button></div>
+<div><img src="https://images.unsplash.com/photo-1587829741301-dc798b83add3?w=400"><br>📺 TV NASIONAL • 2.1rb nonton<br><b>Setup Meja Kerja Minimalis</b><br><span style="color:#ff4d00">Rp 499.000</span> <button style="background:#fff;color:#000;border:0;padding:4px 8px;border-radius:6px;font-weight:800" onclick="beli('Keyboard Live')">TONTON</button></div>
+</div></div></div>
 
-<div id="shop">
-  <div class="header">
-    <div class="row"><div><b>VTC SHOP</b><small>INDONESIA • <span id="userLabel">Tamu</span></small></div><div style="display:flex;gap:8px;align-items:center"><div class="avatar" id="avatar">V</div><button class="logout" onclick="logout()">Keluar</button></div></div>
-    <div class="search">🔍 Cari Produk, Toko, Flash Sale...</div>
-  </div>
-  <div class="menu"><div>🔥<br>Flash Sale</div><div>🏬<br>VTC MALL</div><div>📺<br>VTC TV</div><div>📱<br>VTC LIVE</div><div>🎁<br>Voucher</div><div>🚚<br>Gratis Ongkir</div></div>
-  <div class="card"><h3>🛍️ Jualan - Tambah Produk</h3><p id="sellerInfo">Login sebagai Seller untuk jualan.</p><label>Nama Produk</label><input id="pNama" placeholder="Contoh: Baju Keren"><label>Harga (Rp)</label><input id="pHarga" type="number" placeholder="10000"><button class="btn" style="margin-top:12px" onclick="tambahProduk()">+ Upload Produk</button></div>
-  <div id="listProduk"></div>
-  <p style="text-align:center;color:#999;font-size:12px;padding:10px 20px">VTC SHOP INDONESIA • Versi 2 • Login & Daftar Aktif</p>
-</div>
+<div class="sec" id="produk"><h2>🔥 Flash Sale Hari Ini • Diskon Sampai 80%</h2><div class="grid" id="g1"></div></div>
 
+<div class="sec" id="mall"><div class="mall"><h3><span style="color:#ff4d00">VTC MALL</span> &nbsp; 100% Original • Garansi Resmi & Gratis Ongkir XTRA</h3><div class="grid" id="g2" style="margin-top:10px"></div></div></div>
+
+<div class="sec"><h2>⭐ Rekomendasi Untuk Anda</h2><div class="grid" id="g3"></div></div>
+
+<div class="sec" style="text-align:center;background:#1a1a1a;padding:16px;border-radius:14px"><h2>VTC SHOP INDONESIA</h2><p style="font-size:13px;color:#aaa">Belanja Hemat, COD Aman Bergaransi<br>Live TikTok / YT / IG & TV Nasional dalam satu aplikasi</p><br><a class="btnW" href="https://ais-dev-zdg65jlwuybmcfgfd7kvf3-719431316097.asia-northeast1.run.app/" target="_blank">Buka Aplikasi Lengkap →</a></div>
+
+<div class="bottom"><button class="o" onclick="document.getElementById('produk').scrollIntoView()">⊞ SEMUA ADA</button><button class="w" onclick="checkout()">🛒 CHECKOUT WA</button></div>
 <script>
-let mode='login';
-function switchTab(m){mode=m;document.getElementById('tabLogin').classList.toggle('on',m=='login');document.getElementById('tabDaftar').classList.toggle('on',m=='daftar');document.getElementById('formDaftar').style.display=m=='daftar'?'block':'none';document.getElementById('formDaftar2').style.display=m=='daftar'?'block':'none';document.getElementById('authTitle').innerText=m=='login'?'Selamat Datang':'Buat Akun Baru';document.getElementById('authSub').innerText=m=='login'?'Masuk ke akun VTC SHOP kamu':'Daftar gratis, jualan langsung';document.getElementById('authBtn').innerText=m=='login'?'Masuk':'Daftar Gratis';document.getElementById('authMsg').innerText='';}
-function getUsers(){try{return JSON.parse(localStorage.getItem('vtc_users')||'[]')}catch(e){return[]}}
-function saveUsers(u){localStorage.setItem('vtc_users',JSON.stringify(u))}
-function doAuth(){
-  let user=document.getElementById('loginUser').value.trim();
-  let pass=document.getElementById('loginPass').value;
-  let msg=document.getElementById('authMsg');
-  if(!user||pass.length<6){msg.innerText='Isi No HP/Email & Kata Sandi minimal 6 karakter';return}
-  let users=getUsers();
-  if(mode=='daftar'){
-    let nama=document.getElementById('regNama').value.trim();
-    let peran=document.getElementById('regPeran').value;
-    let p2=document.getElementById('regPass2').value;
-    if(!nama){msg.innerText='Isi Nama Lengkap dulu';return}
-    if(pass!==p2){msg.innerText='Kata sandi tidak sama';return}
-    if(users.find(u=>u.user==user)){msg.innerText='Akun ini sudah terdaftar, silahkan Masuk';return}
-    let baru={nama,user,pass,peran};users.push(baru);saveUsers(users);loginSuccess(baru);
-  } else {
-    let found=users.find(u=>u.user==user&&u.pass==pass);
-    if(!found){msg.innerText='Akun tidak ditemukan / Kata Sandi salah. Coba Daftar dulu.';return}
-    loginSuccess(found);
-  }
-}
-function loginSuccess(u){localStorage.setItem('vtc_session',JSON.stringify(u));showShop(u)}
-function guest(){showShop({nama:'Tamu',user:'Tamu',peran:'Pembeli'})}
-function showShop(u){
-  document.getElementById('auth').classList.remove('show');
-  document.getElementById('shop').classList.add('show');
-  document.getElementById('userLabel').innerText=u.nama+' • '+u.peran;
-  document.getElementById('avatar').innerText=u.nama.charAt(0).toUpperCase();
-  document.getElementById('sellerInfo').innerText=u.peran=='Seller'?'Kamu login sebagai Seller: '+u.nama+' - Bisa upload produk':'Kamu login sebagai '+u.nama+' ('+u.peran+'). Daftar jadi Seller untuk jualan.';
-  renderProduk();
-}
-function logout(){localStorage.removeItem('vtc_session');document.getElementById('shop').classList.remove('show');document.getElementById('auth').classList.add('show')}
-function getProduk(){try{return JSON.parse(localStorage.getItem('vtc_produk')||'[]')}catch(e){return[]}}
-function tambahProduk(){
-  let nama=document.getElementById('pNama').value.trim();
-  let harga=document.getElementById('pHarga').value;
-  let sess=JSON.parse(localStorage.getItem('vtc_session')||'{"nama":"Tamu"}');
-  if(!nama||!harga){alert('Isi Nama & Harga dulu');return}
-  let list=getProduk();list.unshift({nama,harga,toko:sess.nama,created:Date.now()});localStorage.setItem('vtc_produk',JSON.stringify(list));
-  document.getElementById('pNama').value='';document.getElementById('pHarga').value='';renderProduk();alert('Produk berhasil ditambah!');
-}
-function renderProduk(){
-  let list=getProduk();
-  let html=list.length?list.map(p=>`<div class="card"><h3>${p.nama}</h3><p>Toko: ${p.toko} • COD • Garansi Escrow</p><div class="price">Rp ${Number(p.harga).toLocaleString('id-ID')}</div><button class="btn" style="padding:10px;margin-top:10px" onclick="alert('Ditambah ke keranjang: ${p.nama}')">+ Keranjang</button></div>`).join(''):'<div class="card"><p>Belum ada produk. Jadi yang pertama jualan!</p></div>';
-  if(!list.length) html=`<div class="card"><h3>🔥 Flash Sale Hari Ini</h3><p>Contoh Produk - Toko VTC Official</p><div class="price">Rp 49.000 <s style="color:#999;font-size:13px">Rp 99.000</s></div></div>`+html;
-  document.getElementById('listProduk').innerHTML=html;
-}
-window.onload=()=>{
-  setTimeout(()=>{
-    document.getElementById('splash').style.display='none';
-    let sess=localStorage.getItem('vtc_session');
-    if(sess){showShop(JSON.parse(sess))} else {document.getElementById('auth').classList.add('show')}
-  },1800);
-}
-</script>
-</body>
-</html>
+let cart=0;
+const P=[
+{n:"SoundBuds Pro TWS Wireless ANC Bluetooth 5.3",p:199000,o:395000,s:"Berkah Cell",img:"https://images.unsplash.com/photo-1572569511254-d8f925fe2cbb?w=600",d:80},
+{n:"Tumbler Vakum Stainless SUS 304 Anti Bocor",p:79000,o:395000,s:"Dapur Modern",img:"https://images.unsplash.com/photo-1602143407151-7111542de6e8?w=600",d:80},
+{n:"Tas Ransel Kerja Minimalis Anti Air Laptop 15.6\"",p:139000,o:695000,s:"VTC Official",img:"https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=600",d:80},
+{n:"Bundling Kopi Arabika Gayo Drip & Kacang Almond",p:59000,o:120000,s:"Nusantara Mart",img:"https://images.unsplash.com/photo-1559056199-641a0ac8b55e?w=600",d:51},
+{n:"VTC Food: Paket Chicken Teriyaki Bowl + Es Kopi",p:39000,o:78000,s:"Nusantara Mart",img:"https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=600",d:50},
+{n:"VTC Food: Paket Kopi Susu Gula Aren & Camilan",p:29000,o:55000,s:"Dapur Modern",img:"https://images.unsplash.com/photo-1509042239860-f550ce710b93?w=600",d:47},
+{n:"Smartphone VTC X5 5G 8/256GB AMOLED 120Hz Garansi Resmi",p:2799000,o:3999000,s:"Berkah Cell",img:"https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=600",d:30},
+{n:"Helm Full Face Aero Carbon Visor Gelap SNI Original",p:389000,o:750000,s:"OtoPrima ID",img:"https://images.unsplash.com/photo-1557800636-894a64c1696f?w=600",d:48},
+{n:"VTC Halal: Gift Box Hijab Sutra Premium & Madu Herbal BPOM",p:149000,o:299000,s:"Glow Cantik ID",img:"https://images.unsplash.com/photo-1549465220-1a8b9238cd48?w=600",d:50},
+{n:"VTC Halal: Paket Skincare Vitamin C Bebas Alkohol MUI",p:129000,o:249000,s:"VTC Official",img:"https://images.unsplash.com/photo-1620916566398-39f1143ab7be?w=600",d:48},
+{n:"Serum Wajah Vitamin C Radiance Brightening",p:89000,o:178000,s:"Glow Cantik ID",img:"https://images.unsplash.com/photo-1620916566398-39f1143ab7be?w=600",d:50},
+{n:"Sepatu Lari Urban Knit Casual Sport",p:349000,o:698000,s:"Jaya Abadi",img:"https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=600",d:50},
+{n:"Keyboard Mekanikal Wireless 75% Tri-Mode Knob",p:499000,o:998000,s:"Berkah Cell",img:"https://images.unsplash.com/photo-1587829741301-dc798b83add3?w=600",d:50},
+{n:"Paket Sembako Hemat Kopi Snack & Botol Minum",p:49000,o:99000,s:"Nusantara Mart",img:"https://images.unsplash.com/photo-1542838132-92c53300491e?w=600",d:51},
+];
+function card(d){return `<div class="card"><img src="${d.img}"><div class="in"><div class="tags"><span class="red">Star Seller</span><span class="grn">Gratis Ongkir XTRA</span><span class="gry">Bisa COD</span></div><div class="title">${d.n}</div><div>⭐ 4.9 • Terjual 980</div><div class="price">Rp ${d.p.toLocaleString('id-ID')}</div><div class="old">Rp ${d.o.toLocaleString('id-ID')}</div><div class="store">🏠 ${d.s} • Diskon ${d.d}%</div></div><button class="add" onclick="beli('${d.n}')">+ Keranjang</button></div>`}
+document.getElementById("g1").innerHTML=P.slice(0,6).map(card).join("");
+document.getElementById("g2").innerHTML=P.slice(6,10).map(card).join("");
+document.getElementById("g3").innerHTML=P.slice(10).map(card).join("");
+function cari(){let q=document.getElementById("q").value.toLowerCase();let f=P.filter(x=>x.n.toLowerCase().includes(q));document.getElementById("g1").innerHTML=f.map(card).join("")||"<p style='padding:20px'>Produk tidak ditemukan</p>";document.getElementById("g1").scrollIntoView()}
+function beli(n){cart++;document.getElementById("c").innerText=cart;alert(n+" ditambah!")}
+function checkout(){if(!cart)return alert("Keranjang kosong!");window.open("https://wa.me/6281234567890?text="+encodeURIComponent("Halo VTC SHOP, saya mau order "+cart+" produk!"))}
+</script></body></html>
